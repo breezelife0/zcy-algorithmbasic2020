@@ -3,7 +3,9 @@ package class03;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
-
+// ** 栈和队列 **
+// 7.如何用队列结构实现栈结构
+// 思路：两个队列
 public class Code07_TwoQueueImplementStack {
 
 	public static class TwoQueueStack<T> {
@@ -19,6 +21,7 @@ public class Code07_TwoQueueImplementStack {
 			queue.offer(value);
 		}
 
+		//每次pop（poll）取值时，将除最后一个外的数据导入到另外一个队列，最后一个返回，互换角色
 		public T poll() {
 			while (queue.size() > 1) {
 				help.offer(queue.poll());

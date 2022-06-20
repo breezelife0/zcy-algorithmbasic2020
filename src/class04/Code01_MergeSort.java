@@ -1,5 +1,19 @@
 package class04;
 
+// ** 递归-归并排序 **
+// 1.[归并排序]
+//		1）整体是递归，左边排好序+右边排好序+merge让整体有序
+//		2）让其整体有序的过程里用了排外序方法
+//		3）利用master公式来求解时间复杂度
+//		4）当然可以用非递归实现
+//[归并排序复杂度]
+//		T(N) = 2*T(N/2) + O(N^1)
+//		根据master可知时间复杂度为O(N*logN)
+//		merge过程需要辅助数组，所以额外空间复杂度为O(N)
+//		归并排序的实质是把比较行为变成了有序信息并传递，比O(N^2)的排序快（因为比较一遍只选出了一个值，而归并则把左右部分都排列成相对有序，效率更高）
+
+
+
 public class Code01_MergeSort {
 
 	// 递归方法实现
@@ -24,21 +38,24 @@ public class Code01_MergeSort {
 		merge(arr, L, mid, R);
 	}
 
+	//合并两个有序数组为一个大的有序数组 (拓展：合并n个有序数组)
 	public static void merge(int[] arr, int L, int M, int R) {
 		int[] help = new int[R - L + 1];
 		int i = 0;
 		int p1 = L;
 		int p2 = M + 1;
+		//都不越界，谁小谁++
 		while (p1 <= M && p2 <= R) {
 			help[i++] = arr[p1] <= arr[p2] ? arr[p1++] : arr[p2++];
 		}
-		// 要么p1越界了，要么p2越界了
+		// 要么p1越界了，要么p2越界了；两个while只会执行一个
 		while (p1 <= M) {
 			help[i++] = arr[p1++];
 		}
 		while (p2 <= R) {
 			help[i++] = arr[p2++];
 		}
+		//复制到原数组
 		for (i = 0; i < help.length; i++) {
 			arr[L + i] = help[i];
 		}
@@ -64,10 +81,11 @@ public class Code01_MergeSort {
 				merge(arr, L, M, R);
 				L = R + 1;
 			}
-			// 防止溢出
+			// 防止溢出(2倍可能会大与int最大值)
 			if (mergeSize > N / 2) {
 				break;
 			}
+			//2倍
 			mergeSize <<= 1;
 		}
 	}

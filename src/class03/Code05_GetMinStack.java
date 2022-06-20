@@ -1,7 +1,11 @@
 package class03;
 
 import java.util.Stack;
-
+// ** 数组 **
+// 5.获取栈的最小值
+// 思路：使用第二个栈记录每次push新值后的最小值
+//1->2->9->8->2->3->4
+//1->2->x->x->2->3->4 ( 1->2->3->4)
 public class Code05_GetMinStack {
 
 	public static class MyStack1 {

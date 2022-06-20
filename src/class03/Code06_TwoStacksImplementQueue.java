@@ -1,7 +1,9 @@
 package class03;
 
 import java.util.Stack;
-
+// ** 栈和队列 **
+// 6.如何用栈结构实现队列结构
+// 思路：两个栈倒腾一次
 public class Code06_TwoStacksImplementQueue {
 
 	public static class TwoStacksQueue {
@@ -14,6 +16,8 @@ public class Code06_TwoStacksImplementQueue {
 		}
 
 		// push栈向pop栈倒入数据
+		// 1. 当弹出栈空了，才会一次性全量倒数据
+		// 2 pop栈不为空的时候，不能倒数据(否则数据错乱)
 		private void pushToPop() {
 			if (stackPop.empty()) {
 				while (!stackPush.empty()) {

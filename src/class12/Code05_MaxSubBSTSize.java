@@ -1,6 +1,6 @@
 package class12;
 
-// 在线测试链接 : https://leetcode.com/problems/largest-bst-subtree
+// 在线测试链接 : https://leetcode.cn/problems/largest-bst-subtree
 public class Code05_MaxSubBSTSize {
 
 	// 提交时不要提交这个类

@@ -3,6 +3,9 @@ package class03;
 import java.util.ArrayList;
 import java.util.List;
 
+// ** 单链表和双链表 **
+// 1.单链表和双链表如何反转
+
 public class Code01_ReverseList {
 
 	public static class Node {

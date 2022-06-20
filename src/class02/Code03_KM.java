@@ -3,10 +3,13 @@ package class02;
 import java.util.HashMap;
 import java.util.HashSet;
 
+// ** 认识异或运算 **
+// 3. 一个数组中有一种数出现k次，其他数都出现了M次，M>1, K<M，请找到出现K次的数.要求额外空间复杂度O(1), 时间复杂度O(N)
+
 // 输入一定能够保证，数组中所有的数都出现了M次，只有一种数出现了K次
 // 1 <= K < M
 // 返回这种数
-public class Code03_KM {
+public class 	Code03_KM {
 
 	public static int test(int[] arr, int k, int m) {
 		HashMap<Integer, Integer> map = new HashMap<>();

@@ -1,5 +1,7 @@
 package class03;
 
+// ** 单链表和双链表 **
+// 2.把给定值都删除
 public class Code02_DeleteGivenValue {
 
 	public static class Node {

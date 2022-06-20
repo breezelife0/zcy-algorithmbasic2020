@@ -1,5 +1,8 @@
 package class02;
 
+// ** 认识异或运算 **
+// 1.如何不用额外变量交换两个数
+
 public class Code01_Swap {
 	
 	public static void main(String[] args) {
