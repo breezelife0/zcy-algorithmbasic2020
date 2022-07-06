@@ -20,6 +20,12 @@ public class Code02_BubbleSort {
 		}
 	}
 
+
+	public static void bubbleSortMy(int[] arr){
+
+	}
+
+
 	// 交换arr的i和j位置上的值
 	public static void swap(int[] arr, int i, int j) {
 		arr[i] = arr[i] ^ arr[j];
@@ -92,7 +98,8 @@ public class Code02_BubbleSort {
 		for (int i = 0; i < testTime; i++) {
 			int[] arr1 = generateRandomArray(maxSize, maxValue);
 			int[] arr2 = copyArray(arr1);
-			bubbleSort(arr1);
+//			bubbleSort(arr1);
+			bubbleSortMy(arr1);
 			comparator(arr2);
 			if (!isEqual(arr1, arr2)) {
 				succeed = false;
@@ -101,10 +108,10 @@ public class Code02_BubbleSort {
 		}
 		System.out.println(succeed ? "Nice!" : "Fucking fucked!");
 
-		int[] arr = generateRandomArray(maxSize, maxValue);
-		printArray(arr);
-		bubbleSort(arr);
-		printArray(arr);
+//		int[] arr = generateRandomArray(maxSize, maxValue);
+//		printArray(arr);
+//		bubbleSort(arr);
+//		printArray(arr);
 	}
 
 }

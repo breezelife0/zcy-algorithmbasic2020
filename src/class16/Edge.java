@@ -1,5 +1,8 @@
 package class16;
 
+// ** 图论 **
+// 图的结构表示：边
+
 public class Edge {
 	public int weight;
 	public Node from;

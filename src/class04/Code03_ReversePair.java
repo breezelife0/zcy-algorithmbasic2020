@@ -1,6 +1,9 @@
 package class04;
 // ** 递归-归并排序 **
 // 3.[逆序对]
+// 下标小，数值大(和求小和相反)
+//如果存在正整数 i, j 使得 1 ≤ i < j ≤ n 而且 A[i] > A[j]，则 <A[i], A[j]> 这个有序对称为 A 的一个逆序对，也称作逆序数。
+
 public class Code03_ReversePair {
 
 	public static int reverPairNumber(int[] arr) {
@@ -30,6 +33,7 @@ public class Code03_ReversePair {
 		int p2 = r;
 		int res = 0;
 		while (p1 >= L && p2 > m) {
+			//【在次统计】
 			res += arr[p1] > arr[p2] ? (p2 - m) : 0;
 			help[i--] = arr[p1] > arr[p2] ? arr[p1--] : arr[p2--];
 		}

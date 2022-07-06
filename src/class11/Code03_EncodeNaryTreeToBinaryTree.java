@@ -3,6 +3,9 @@ package class11;
 import java.util.ArrayList;
 import java.util.List;
 
+// ** 二叉树 **
+// 3. 将N叉树编码为二叉树
+
 // 本题测试链接：https://leetcode.cn/problems/encode-n-ary-tree-to-binary-tree
 public class Code03_EncodeNaryTreeToBinaryTree {
 

@@ -7,6 +7,19 @@ import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Set;
 import java.util.Stack;
+// ** 图论 **
+//最小生成树
+// （Minimum-Spanning-Tree，MST）：对于一个带权连通无向图G=(V,E)，生成树不同，每棵树的权（树中所有边上的权值和）也不同，设R为G的所有生成树的集合，若T为R中权值和最小的生成树，则T称为G的最小生成树
+// 4. Kruskal算法（克鲁斯卡尔）
+//		每次选择权值最小的边，使这条边的两头连通（原本已近连通则不选）直到所有结点都连通
+
+//		1）总是从权值最小的边开始考虑，依次考察权值依次变大的边
+//		2）当前的边要么进入最小生成树的集合，要么丢弃
+//		3）如果当前的边进入最小生成树的集合中不会形成环，就要当前边
+//		4）如果当前的边进入最小生成树的集合中会形成环，就不要当前边
+//		5）考察完所有边之后，最小生成树的集合也得到了
+
+
 
 //undirected graph only
 public class Code04_Kruskal {

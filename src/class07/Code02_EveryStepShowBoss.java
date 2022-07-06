@@ -5,6 +5,9 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
+// ** 堆 **
+// 2.买货退货，抽奖；得奖区，候选区
+// 求每个事件后的得奖名单
 public class Code02_EveryStepShowBoss {
 
 	public static class Customer {

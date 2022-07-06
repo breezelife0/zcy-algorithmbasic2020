@@ -1,6 +1,8 @@
 package class01;
 
 import java.util.Arrays;
+// ** 二分查找 **
+// 在arr上，找满足>=value的最左位置
 
 public class Code05_BSNearLeft {
 
@@ -19,6 +21,12 @@ public class Code05_BSNearLeft {
 			}
 		}
 		return index;
+	}
+
+
+
+	public static int nearestIndexMy(int[] arr, int value) {
+		 return  -1 ;
 	}
 
 	// for test
@@ -60,7 +68,7 @@ public class Code05_BSNearLeft {
 			int[] arr = generateRandomArray(maxSize, maxValue);
 			Arrays.sort(arr);
 			int value = (int) ((maxValue + 1) * Math.random()) - (int) (maxValue * Math.random());
-			if (test(arr, value) != nearestIndex(arr, value)) {
+			if (test(arr, value) != nearestIndexMy(arr, value)) {
 				printArray(arr);
 				System.out.println(value);
 				System.out.println(test(arr, value));

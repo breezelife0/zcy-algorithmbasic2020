@@ -2,6 +2,10 @@ package class10;
 
 import java.util.Stack;
 
+// ** 二叉树 **
+// 2. 非递归 打印二叉树
+// 提示： 任何递归函数都可以改成非递归，自己设计压栈的来实现
+
 public class Code03_UnRecursiveTraversalBT {
 
 	public static class Node {
@@ -14,6 +18,7 @@ public class Code03_UnRecursiveTraversalBT {
 		}
 	}
 
+	//先序，栈
 	public static void pre(Node head) {
 		System.out.print("pre-order: ");
 		if (head != null) {
@@ -33,6 +38,7 @@ public class Code03_UnRecursiveTraversalBT {
 		System.out.println();
 	}
 
+	//中序，栈
 	public static void in(Node cur) {
 		System.out.print("in-order: ");
 		if (cur != null) {
@@ -51,6 +57,7 @@ public class Code03_UnRecursiveTraversalBT {
 		System.out.println();
 	}
 
+	//后序，栈
 	public static void pos1(Node head) {
 		System.out.print("pos-order: ");
 		if (head != null) {

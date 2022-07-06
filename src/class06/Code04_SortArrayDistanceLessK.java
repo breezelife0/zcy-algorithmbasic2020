@@ -2,6 +2,9 @@ package class06;
 
 import java.util.Arrays;
 import java.util.PriorityQueue;
+// ** 堆 **
+// 4. 已知一个几乎有序的数组。几乎有序是指，如果把数组排好顺序的话，每个元素移动的距离一定不超过k，并且k相对于数组长度来说是比较小的。
+//  请选择一个合适的排序策略，对这个数组进行排序。
 
 public class Code04_SortArrayDistanceLessK {
 
@@ -12,15 +15,18 @@ public class Code04_SortArrayDistanceLessK {
 		// 默认小根堆
 		PriorityQueue<Integer> heap = new PriorityQueue<>();
 		int index = 0;
+		//前k个数进k排序，
 		// 0...K-1
 		for (; index <= Math.min(arr.length - 1, k - 1); index++) {
 			heap.add(arr[index]);
 		}
 		int i = 0;
+		//之后加一个弹一个
 		for (; index < arr.length; i++, index++) {
 			heap.add(arr[index]);
 			arr[i] = heap.poll();
 		}
+		//堆里剩下的依次弹出
 		while (!heap.isEmpty()) {
 			arr[i++] = heap.poll();
 		}
@@ -99,7 +105,7 @@ public class Code04_SortArrayDistanceLessK {
 	}
 
 	// for test
-	public static void main(String[] args) {
+	public static void main0(String[] args) {
 		System.out.println("test begin");
 		int testTime = 500000;
 		int maxSize = 100;
@@ -123,5 +129,20 @@ public class Code04_SortArrayDistanceLessK {
 		}
 		System.out.println(succeed ? "Nice!" : "Fucking fucked!");
 	}
+	// for test
+	public static void main(String[] args) {
+		System.out.println("test begin");
+		int testTime = 5;
+		int maxSize = 10;
+		int maxValue = 10;
+
+		for (int i = 0; i < testTime; i++) {
+			int k = (int) (Math.random() * maxSize) + 1;
+			int[] arr = randomArrayNoMoveMoreK(maxSize, maxValue, k);
+			int[] arr1 = copyArray(arr);
+
+			sortedArrDistanceLessK(arr1, k);
+		}
+ 	}
 
 }

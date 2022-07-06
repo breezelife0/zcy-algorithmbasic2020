@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+// ** 手写加强堆 **
+// 自建反向索引，可以根据值快速定位位置
+//java的自带的堆没有反向索引，需要遍历，时间复杂度O(N)
 
 /*
  * T一定要是非基础类型，有基础类型需求包一层
@@ -39,8 +42,11 @@ public class HeapGreater<T> {
 	}
 
 	public void push(T obj) {
+		//放到数组中
 		heap.add(obj);
+		//放到索引中
 		indexMap.put(obj, heapSize);
+		//按堆的逻辑结构来调整数组
 		heapInsert(heapSize++);
 	}
 
@@ -64,8 +70,8 @@ public class HeapGreater<T> {
 			resign(replace);
 		}
 	}
-
 	public void resign(T obj) {
+		//进行heapInsert[或者]heapify
 		heapInsert(indexMap.get(obj));
 		heapify(indexMap.get(obj));
 	}
@@ -89,6 +95,7 @@ public class HeapGreater<T> {
 	private void heapify(int index) {
 		int left = index * 2 + 1;
 		while (left < heapSize) {
+			//使用自定义比较器
 			int best = left + 1 < heapSize && comp.compare(heap.get(left + 1), heap.get(left)) < 0 ? (left + 1) : left;
 			best = comp.compare(heap.get(best), heap.get(index)) < 0 ? best : index;
 			if (best == index) {
@@ -100,6 +107,7 @@ public class HeapGreater<T> {
 		}
 	}
 
+	//封装函数，同步调整堆和反向索引
 	private void swap(int i, int j) {
 		T o1 = heap.get(i);
 		T o2 = heap.get(j);

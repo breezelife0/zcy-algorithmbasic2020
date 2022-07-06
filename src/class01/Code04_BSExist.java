@@ -1,6 +1,13 @@
 package class01;
 
 import java.util.Arrays;
+// ** 二分查找 **
+// 有序数组(由小到大)上进行查找
+
+// 取中点的写法：mid = L + ((R - L) >> 1);
+// (L + R) >> 1; 使用 L + R可能溢出，
+// 另，	<< >> >>> 优先级低于+ - ，需要括起来。
+
 
 public class Code04_BSExist {
 
@@ -23,6 +30,10 @@ public class Code04_BSExist {
 			}
 		}
 		return sortedArr[L] == num;
+	}
+
+	public static boolean existMy(int[] sortedArr, int num){
+		return false;
 	}
 	
 	// for test
@@ -54,7 +65,7 @@ public class Code04_BSExist {
 			int[] arr = generateRandomArray(maxSize, maxValue);
 			Arrays.sort(arr);
 			int value = (int) ((maxValue + 1) * Math.random()) - (int) (maxValue * Math.random());
-			if (test(arr, value) != exist(arr, value)) {
+			if (test(arr, value) != existMy(arr, value)) {
 				succeed = false;
 				break;
 			}

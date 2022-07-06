@@ -16,7 +16,7 @@ package class04;
 
 public class Code01_MergeSort {
 
-	// 递归方法实现
+	// --- 递归方法实现（方法栈方式） ---
 	public static void mergeSort1(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return;
@@ -29,6 +29,7 @@ public class Code01_MergeSort {
 	// T(N) = 2 * T(N / 2) + O(N)
 	// O(N * logN)
 	public static void process(int[] arr, int L, int R) {
+		//只有一个点时，排序(什么都不做，排序结果就是本身)
 		if (L == R) { // base case
 			return;
 		}
@@ -60,8 +61,8 @@ public class Code01_MergeSort {
 			arr[L + i] = help[i];
 		}
 	}
-
-	// 非递归方法实现
+	// breeze-todo
+	// --- 非递归方法实现（循环迭代方式） ---
 	public static void mergeSort2(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return;
@@ -141,6 +142,13 @@ public class Code01_MergeSort {
 		System.out.println();
 	}
 
+
+	public static void mergeSortMy(int[] arr) {
+		 return;
+	}
+
+
+
 	// for test
 	public static void main(String[] args) {
 		int testTime = 500000;
@@ -151,7 +159,8 @@ public class Code01_MergeSort {
 			int[] arr1 = generateRandomArray(maxSize, maxValue);
 			int[] arr2 = copyArray(arr1);
 			mergeSort1(arr1);
-			mergeSort2(arr2);
+//			mergeSort2(arr2);
+			mergeSortMy(arr2);
 			if (!isEqual(arr1, arr2)) {
 				System.out.println("出错了！");
 				printArray(arr1);

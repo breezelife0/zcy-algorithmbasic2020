@@ -1,6 +1,10 @@
 package class12;
 
+// ** 二叉树递归套路 **
+// 5.给定一棵二叉树的头节点head，
+//返回这颗二叉树中最大的二叉搜索子树的大小
 // 在线测试链接 : https://leetcode.cn/problems/largest-bst-subtree
+
 public class Code05_MaxSubBSTSize {
 
 	// 提交时不要提交这个类

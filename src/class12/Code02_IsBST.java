@@ -2,6 +2,10 @@ package class12;
 
 import java.util.ArrayList;
 
+// ** 二叉树递归套路 **
+// 2.给定一棵二叉树的头节点head，返回这颗二叉树是不是搜索二叉树
+
+
 public class Code02_IsBST {
 
 	public static class Node {

@@ -3,9 +3,15 @@ package class13;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.TreeSet;
+// ** 贪心 **
+//  5. 给定一个由字符串组成的数组strs，必须把所有的字符串拼接起来，返回所有可能的拼接结果中，字典序最小的结果
 
+// 字典序又称字母序， String.compareTo() 使用的就是字典序，即ascii码表值的大小
+// 字母ascii码表值由小到大顺序是：A-Z a-z (大写小于小写)
+// 1个字符串比较：str1.compareTo(str2);
+// 2个字符串拼接后比较：(a + b).compareTo(b + a);
 public class Code05_LowestLexicography {
-
+	// 对照函数，使用暴力全排列，获取最优解
 	public static String lowestString1(String[] strs) {
 		if (strs == null || strs.length == 0) {
 			return "";
@@ -93,8 +99,17 @@ public class Code05_LowestLexicography {
 		}
 		return ans;
 	}
+	public static void printArray(String[] arr) {
+		if (arr == null) {
+			return;
+		}
+		for (int i = 0; i < arr.length; i++) {
+			System.out.print(arr[i] + " ");
+		}
+		System.out.println();
+	}
 
-	public static void main(String[] args) {
+	public static void main0(String[] args) {
 		int arrLen = 6;
 		int strLen = 5;
 		int testTimes = 10000;
@@ -113,4 +128,23 @@ public class Code05_LowestLexicography {
 		System.out.println("finish!");
 	}
 
+	public static void main(String[] args) {
+		String a = "a";
+		int a1 = a.compareTo("A");
+		System.out.println(a1);
+
+		int arrLen = 6;
+		int strLen = 5;
+		int testTimes = 5;
+		System.out.println("test begin");
+		for (int i = 0; i < testTimes; i++) {
+			String[] arr1 = generateRandomStringArray(arrLen, strLen);
+			String[] arr2 = copyStringArray(arr1);
+			printArray(arr1);
+			String s = lowestString2(arr2);
+			printArray(arr1);
+			System.out.println(s);
+			System.out.println("========");
+		}
+	}
 }

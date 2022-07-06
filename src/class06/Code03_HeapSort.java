@@ -1,40 +1,67 @@
 package class06;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.PriorityQueue;
+// ** 堆 **
+// 3. 堆排序
+// 1.先把数组调成大根堆，2.再从堆定拿最大值,放在arr[heapSize]，然后恢复堆结构 3.heapSize--,重复2
 
 public class Code03_HeapSort {
-
-	// 堆排序额外空间复杂度O(1)
-	public static void heapSort(int[] arr) {
-		if (arr == null || arr.length < 2) {
-			return;
-		}
-		// O(N*logN)
+    // 堆排序额外空间复杂度O(1)
+    public static void heapSort(int[] arr) {
+        if (arr == null || arr.length < 2) {
+            return;
+        }
+        // O(N*logN)
 //		for (int i = 0; i < arr.length; i++) { // O(N)
 //			heapInsert(arr, i); // O(logN)
 //		}
-		// O(N)
-		for (int i = arr.length - 1; i >= 0; i--) {
+        // O(N)
+        for (int i = arr.length - 1; i >= 0; i--) {
+            heapify(arr, i, arr.length);
+
+        }
+
+        int heapSize = arr.length;
+        swap(arr, 0, --heapSize);
+        // O(N*logN)
+        while (heapSize > 0) { // O(N)
+            heapify(arr, 0, heapSize); // O(logN)
+            swap(arr, 0, --heapSize); // O(1)
+        }
+    }
+
+	public static void heapSortMy(int[] arr) {
+		if(arr == null || arr.length < 2) {
+			return;
+		}
+		for(int i= arr.length-1 ; i>= 0; i--){
 			heapify(arr, i, arr.length);
 		}
 		int heapSize = arr.length;
-		swap(arr, 0, --heapSize);
-		// O(N*logN)
-		while (heapSize > 0) { // O(N)
-			heapify(arr, 0, heapSize); // O(logN)
-			swap(arr, 0, --heapSize); // O(1)
+		while (heapSize >0){
+			swap(arr, 0, --heapSize);
+			heapify(arr, 0, heapSize);
 		}
 	}
+
 
 	// arr[index]刚来的数，往上
+//	public static void heapInsert(int[] arr, int index) {
+//		while (arr[index] > arr[(index - 1) / 2]) {
+//			swap(arr, index, (index - 1) / 2);
+//			index = (index - 1) / 2;
+//		}
+//	}
+
 	public static void heapInsert(int[] arr, int index) {
-		while (arr[index] > arr[(index - 1) / 2]) {
-			swap(arr, index, (index - 1) / 2);
-			index = (index - 1) / 2;
+		int fatherIndex ;
+		while ((fatherIndex = (index - 1)>>1)  > 0 && arr[index] > arr[fatherIndex] ) {
+			swap(arr, index, fatherIndex);
+			index = fatherIndex;
 		}
 	}
-
 	// arr[index]位置的数，能否往下移动
 	public static void heapify(int[] arr, int index, int heapSize) {
 		int left = index * 2 + 1; // 左孩子的下标
@@ -141,6 +168,7 @@ public class Code03_HeapSort {
 			int[] arr1 = generateRandomArray(maxSize, maxValue);
 			int[] arr2 = copyArray(arr1);
 			heapSort(arr1);
+//			heapSortMy(arr1);
 			comparator(arr2);
 			if (!isEqual(arr1, arr2)) {
 				succeed = false;
@@ -149,10 +177,43 @@ public class Code03_HeapSort {
 		}
 		System.out.println(succeed ? "Nice!" : "Fucking fucked!");
 
-		int[] arr = generateRandomArray(maxSize, maxValue);
-		printArray(arr);
-		heapSort(arr);
-		printArray(arr);
+//		int[] arr = generateRandomArray(maxSize, maxValue);
+//		printArray(arr);
+//		heapSort(arr);
+//		printArray(arr);
 	}
+
+    public static class ComparatorMy implements Comparator<Integer> {
+        @Override
+        public int compare(Integer o1, Integer o2){
+            return o2 - o1;
+        }
+    }
+
+    // for test
+//    public static void main1(String[] args) {
+//        int testTime = 1;
+//        int maxSize = 10;
+//        int maxValue = 10;
+//        for (int i = 0; i < testTime; i++) {
+//            int[] arr = generateRandomArray(maxSize, maxValue);
+//            int[] arr1 = copyArray(arr);
+//
+////            PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(new Code03_HeapSort.ComparatorMy());
+//            Code02_Heap.MyMaxHeap myMaxHeap = new Code02_Heap.MyMaxHeap(arr.length);
+//            for (int j = 0; j < arr.length; j++) {
+////                priorityQueue.add(arr[j]);
+//                myMaxHeap.push(arr[j]);
+//            }
+//            myMaxHeap.printInner();
+//            //===
+//            for (int jj = arr1.length - 1; jj >= 0; jj--) {
+//                heapify(arr1, jj, arr1.length);
+//            }
+//            printArray(arr1);
+//
+//
+//        }
+//    }
 
 }

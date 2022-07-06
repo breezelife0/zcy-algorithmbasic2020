@@ -1,7 +1,13 @@
 package class04;
 // ** 递归-归并排序 **
-// 4.[反转对]
+// 4.[翻转对]
 //  本题测试链接 : https://leetcode.cn/problems/reverse-pairs/
+//给定一个数组nums，如果i < j且nums[i] > 2*nums[j]我们就将(i, j)称作一个重要翻转对。
+//
+//		你需要返回给定数组中的重要翻转对的数量
+
+// 一个数组中有一种数出现k次，其他数都出现了M次，M>1, K<M，请找到出现K次的数.要求额外空间复杂度O(1), 时间复杂度O(N)
+
 public class Code04_BiggerThanRightTwice {
 
 	public static int reversePairs(int[] arr) {

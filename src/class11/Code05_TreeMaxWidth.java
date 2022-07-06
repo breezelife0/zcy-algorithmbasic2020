@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
+// ** 二叉树 **
+// 5.求二叉树最宽的层有多少个节点
 public class Code05_TreeMaxWidth {
 
 	public static class Node {

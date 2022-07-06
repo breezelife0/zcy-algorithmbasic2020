@@ -3,9 +3,16 @@ package class07;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
+// ** 堆 **
+// 4.最大线段重合问题
+//给定很多线段，每个线段都有两个数[start，end]
+//返回线段最多重合区域中，包含了几条线段(重合区域的长度必须>=1)
+
+// 指令量在10^8内，时间校验可以过，也可以通过此技巧猜测可行的时间复杂度
 
 public class Code01_CoverMax {
 
+	//O（(max-min)*N）
 	public static int maxCover1(int[][] lines) {
 		int min = Integer.MAX_VALUE;
 		int max = Integer.MIN_VALUE;
@@ -14,9 +21,12 @@ public class Code01_CoverMax {
 			max = Math.max(max, lines[i][1]);
 		}
 		int cover = 0;
+		//遍历最小到最大之间的每个点
 		for (double p = min + 0.5; p < max; p += 1) {
 			int cur = 0;
+			//遍历线段的每个点
 			for (int i = 0; i < lines.length; i++) {
+				//线段包含P点
 				if (lines[i][0] < p && lines[i][1] > p) {
 					cur++;
 				}
@@ -26,26 +36,32 @@ public class Code01_CoverMax {
 		return cover;
 	}
 
+	//时间复杂度：O（N*log2N）
 	public static int maxCover2(int[][] m) {
 		Line[] lines = new Line[m.length];
 		for (int i = 0; i < m.length; i++) {
 			lines[i] = new Line(m[i][0], m[i][1]);
 		}
+		//以线段起始节点从小到大排序
 		Arrays.sort(lines, new StartComparator());
-		// 小根堆，每一条线段的结尾数值，使用默认的
+
+		// 小根堆，每一条线段的[结尾数]值，使用默认的
 		PriorityQueue<Integer> heap = new PriorityQueue<>();
 		int max = 0;
 		for (int i = 0; i < lines.length; i++) {
 			// lines[i] -> cur 在黑盒中，把<=cur.start 东西都弹出
+			// 比较当前线段头，与栈中最小的线段结尾
 			while (!heap.isEmpty() && heap.peek() <= lines[i].start) {
-				heap.poll();
+				heap.poll(); //无效线段，弹出丢弃
 			}
 			heap.add(lines[i].end);
+			//堆中剩余的线段结尾个数(即线段数)，即为以当前线段头为交集，贯穿当前线段的线段数。
 			max = Math.max(max, heap.size());
 		}
 		return max;
 	}
 
+	//定义一个线段对象
 	public static class Line {
 		public int start;
 		public int end;
@@ -68,6 +84,7 @@ public class Code01_CoverMax {
 	// 和maxCover2过程是一样的
 	// 只是代码更短
 	// 不使用类定义的写法
+	// lamda匿名函数
 	public static int maxCover3(int[][] m) {
 		// m是二维数组，可以认为m内部是一个一个的一维数组
 		// 每一个一维数组就是一个对象，也就是线段
@@ -103,6 +120,7 @@ public class Code01_CoverMax {
 		return ans;
 	}
 
+   //按线段开始位置，从小到大排序
 	public static class StartComparator implements Comparator<Line> {
 
 		@Override

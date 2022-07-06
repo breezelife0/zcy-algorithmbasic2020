@@ -16,6 +16,9 @@ public class Code03_InsertionSort {
 		}
 	}
 
+	public static void insertionSortMy(int[] arr){
+	}
+
 	// i和j是一个位置的话，会出错
 	public static void swap(int[] arr, int i, int j) {
 		arr[i] = arr[i] ^ arr[j];
@@ -92,7 +95,8 @@ public class Code03_InsertionSort {
 			int[] arr = generateRandomArray(maxSize, maxValue);
 			int[] arr1 = copyArray(arr);
 			int[] arr2 = copyArray(arr);
-			insertionSort(arr1);
+//			insertionSort(arr1);
+			insertionSortMy(arr1);
 			comparator(arr2);
 			if (!isEqual(arr1, arr2)) {
 				// 打印arr1
@@ -106,11 +110,11 @@ public class Code03_InsertionSort {
 			}
 		}
 		System.out.println(succeed ? "Nice!" : "Fucking fucked!");
-
-		int[] arr = generateRandomArray(maxSize, maxValue);
-		printArray(arr);
-		insertionSort(arr);
-		printArray(arr);
+//
+//		int[] arr = generateRandomArray(maxSize, maxValue);
+//		printArray(arr);
+//		insertionSort(arr);
+//		printArray(arr);
 	}
 
 }

@@ -2,6 +2,9 @@ package class12;
 
 import java.util.LinkedList;
 
+// ** 二叉树递归套路 **
+// 1.给定一棵二叉树的头节点head，返回这颗二叉树中是不是完全二叉树
+
 public class Code01_IsCBT {
 
 	public static class Node {

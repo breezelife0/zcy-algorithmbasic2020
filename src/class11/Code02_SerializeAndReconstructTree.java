@@ -3,6 +3,12 @@ package class11;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
+// ** 二叉树 **
+// 2. 二叉树的序列化和反序列化
+//		1）可以用先序或者后序或者按层遍历，来实现二叉树的序列化
+//		2）用了什么方式序列化，就用什么样的方式反序列化
+//		3）中序遍历无法实现序列化和反序列化
+
 
 public class Code02_SerializeAndReconstructTree {
     /*
@@ -31,6 +37,7 @@ public class Code02_SerializeAndReconstructTree {
 		}
 	}
 
+	//先序序列化
 	public static Queue<String> preSerial(Node head) {
 		Queue<String> ans = new LinkedList<>();
 		pres(head, ans);
@@ -63,6 +70,8 @@ public class Code02_SerializeAndReconstructTree {
 		}
 	}
 
+
+	//后序序列化
 	public static Queue<String> posSerial(Node head) {
 		Queue<String> ans = new LinkedList<>();
 		poss(head, ans);
@@ -79,6 +88,7 @@ public class Code02_SerializeAndReconstructTree {
 		}
 	}
 
+	//先序 反序列化
 	public static Node buildByPreQueue(Queue<String> prelist) {
 		if (prelist == null || prelist.size() == 0) {
 			return null;
@@ -97,6 +107,7 @@ public class Code02_SerializeAndReconstructTree {
 		return head;
 	}
 
+	//后序 反序列化
 	public static Node buildByPosQueue(Queue<String> poslist) {
 		if (poslist == null || poslist.size() == 0) {
 			return null;
@@ -120,6 +131,7 @@ public class Code02_SerializeAndReconstructTree {
 		return head;
 	}
 
+	//按层 序列化
 	public static Queue<String> levelSerial(Node head) {
 		Queue<String> ans = new LinkedList<>();
 		if (head == null) {
@@ -147,6 +159,7 @@ public class Code02_SerializeAndReconstructTree {
 		return ans;
 	}
 
+	//按层 反序列化
 	public static Node buildByLevelQueue(Queue<String> levelList) {
 		if (levelList == null || levelList.size() == 0) {
 			return null;

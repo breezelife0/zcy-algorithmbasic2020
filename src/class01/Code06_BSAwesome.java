@@ -1,4 +1,11 @@
 package class01;
+// ** 二分查找 **
+// 获取一个局部最小值
+
+//题意是指当a[i]的前后两个元素都存在时，需要满足“a[i] < a[i-1]，且a[i] < a[i+1]”这个条件，
+//但是如果a[i]是第一个元素或者是最后一个元素，那么只需要看一边。
+//所以对于任何一个数组，”局部最小元素“一定是存在的，
+//题意要求找一个就行，于是就用二分了。
 
 public class Code06_BSAwesome {
 
@@ -28,6 +35,11 @@ public class Code06_BSAwesome {
 		}
 		return left;
 	}
+
+	public static int getLessIndexMy(int[] arr) {
+		return  -1;
+	}
+
 
 	// 验证得到的结果，是不是局部最小
 	public static boolean isRight(int[] arr, int index) {
@@ -64,7 +76,7 @@ public class Code06_BSAwesome {
 		System.out.println("测试开始");
 		for (int i = 0; i < testTime; i++) {
 			int[] arr = generateRandomArray(maxSize, maxValue);
-			int ans = getLessIndex(arr);
+			int ans = getLessIndexMy(arr);
 			if (!isRight(arr, ans)) {
 				System.out.println("出错了！");
 				break;

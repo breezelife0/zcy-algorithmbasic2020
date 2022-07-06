@@ -1,10 +1,12 @@
 package class01;
 
 import java.util.Arrays;
-
+// ** 二分查找 **
+// 有序数组(由小到大)上进行查找
+//在arr上，找满足<=value的最右位置
 public class Code05_BSNearRight {
 
-	// 在arr上，找满足<=value的最右位置
+	//
 	public static int nearestIndex(int[] arr, int value) {
 		int L = 0;
 		int R = arr.length - 1;
@@ -19,6 +21,10 @@ public class Code05_BSNearRight {
 			}
 		}
 		return index;
+	}
+
+	public static int nearestIndexMy(int[] arr, int value) {
+		 return -1;
 	}
 
 	// for test
@@ -60,7 +66,7 @@ public class Code05_BSNearRight {
 			int[] arr = generateRandomArray(maxSize, maxValue);
 			Arrays.sort(arr);
 			int value = (int) ((maxValue + 1) * Math.random()) - (int) (maxValue * Math.random());
-			if (test(arr, value) != nearestIndex(arr, value)) {
+			if (test(arr, value) != nearestIndexMy(arr, value)) {
 				printArray(arr);
 				System.out.println(value);
 				System.out.println(test(arr, value));

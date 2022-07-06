@@ -3,6 +3,11 @@ package class11;
 import java.util.LinkedList;
 import java.util.Queue;
 
+// ** 二叉树 **
+// 1.实现二叉树的按层遍
+// 思路：1）其实就是宽度优先遍历，用队列
+//		2）可以通过设置flag变量的方式，来发现某一层的结束（看题目）
+
 public class Code01_LevelTraversalBT {
 
 	public static class Node {
@@ -15,6 +20,7 @@ public class Code01_LevelTraversalBT {
 		}
 	}
 
+	//用链表作为队列，宽度优先遍历
 	public static void level(Node head) {
 		if (head == null) {
 			return;

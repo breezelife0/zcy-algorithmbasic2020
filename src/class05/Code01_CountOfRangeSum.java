@@ -1,7 +1,18 @@
 package class05;
+// ** 递归-归并排序 ** todo do
+//
+//1、给你一个整数数组nums 以及两个整数lower 和 upper 。求数组中，值位于范围 [lower, upper] （包含lower和upper）之内的 区间和的个数 。
+//
+//区间和S(i, j)表示：在nums中，位置从i到j的元素之和，包含i和j(i ≤ j)。
+
+
 
 // 这道题直接在leetcode测评：
 // https://leetcode.cn/problems/count-of-range-sum/
+//
+
+//思路：区间和可以利用前缀和数组存储
+
 public class Code01_CountOfRangeSum {
 
 	public static int countRangeSum(int[] nums, int lower, int upper) {
@@ -10,6 +21,7 @@ public class Code01_CountOfRangeSum {
 		}
 		long[] sum = new long[nums.length];
 		sum[0] = nums[0];
+		// 前缀和数组
 		for (int i = 1; i < nums.length; i++) {
 			sum[i] = sum[i - 1] + nums[i];
 		}
@@ -25,10 +37,12 @@ public class Code01_CountOfRangeSum {
 				+ merge(sum, L, M, R, lower, upper);
 	}
 
+	//breeze-to
 	public static int merge(long[] arr, int L, int M, int R, int lower, int upper) {
 		int ans = 0;
 		int windowL = L;
 		int windowR = L;
+		//不回退统计
 		// [windowL, windowR)
 		for (int i = M + 1; i <= R; i++) {
 			long min = arr[i] - upper;

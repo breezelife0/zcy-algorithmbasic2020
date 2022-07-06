@@ -1,5 +1,9 @@
 package class10;
 
+// ** 二叉树 **
+// 2. 递归 打印二叉树
+// 递归序 ： 都有三次机会回到函数:头，左，右； 第一次到达一个节点就打印就是先序、第二次打印即中序、第三次即后序
+
 public class Code02_RecursiveTraversalBT {
 
 	public static class Node {
@@ -23,7 +27,7 @@ public class Code02_RecursiveTraversalBT {
 		// 3
 	}
 
-	// 先序打印所有节点
+	// 先序 头左右
 	public static void pre(Node head) {
 		if (head == null) {
 			return;
@@ -33,6 +37,7 @@ public class Code02_RecursiveTraversalBT {
 		pre(head.right);
 	}
 
+	// 中序 左头右
 	public static void in(Node head) {
 		if (head == null) {
 			return;
@@ -42,6 +47,7 @@ public class Code02_RecursiveTraversalBT {
 		in(head.right);
 	}
 
+	// 后序 左右头
 	public static void pos(Node head) {
 		if (head == null) {
 			return;

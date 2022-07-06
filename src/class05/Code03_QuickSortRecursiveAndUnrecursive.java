@@ -3,6 +3,8 @@ package class05;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
+// ** 快速排序 **
+// 3.递归和非递归版本
 
 public class Code03_QuickSortRecursiveAndUnrecursive {
 
@@ -36,7 +38,7 @@ public class Code03_QuickSortRecursiveAndUnrecursive {
 		arr[j] = tmp;
 	}
 
-	// 快排递归版本
+	// 快排递归版本(3.0)
 	public static void quickSort1(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return;
@@ -54,7 +56,7 @@ public class Code03_QuickSortRecursiveAndUnrecursive {
 		process(arr, equalArea[1] + 1, R);
 	}
 
-	// 快排非递归版本需要的辅助类
+	// 快排非递归版本需要的辅助类,记录边界
 	// 要处理的是什么范围上的排序
 	public static class Op {
 		public int l;
@@ -66,6 +68,7 @@ public class Code03_QuickSortRecursiveAndUnrecursive {
 		}
 	}
 
+	// breeze-todo
 	// 快排3.0 非递归版本 用栈来执行
 	public static void quickSort2(int[] arr) {
 		if (arr == null || arr.length < 2) {

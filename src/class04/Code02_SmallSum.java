@@ -11,6 +11,9 @@ package class04;
 //		所以s的小和为0+1+4+1+6+15=27
 //		给定一个数组s，实现函数返回s的小和。
 
+//思路：左侧小->右侧比当前值大的个数 当前值*个数
+//利用归并排序加工
+
 // 暴力遍历累加O(N^2)没分；使用归并排序:O(N*logN)
 public class Code02_SmallSum {
 
@@ -27,17 +30,28 @@ public class Code02_SmallSum {
 	// 右 排序  merge
 	// merge
 	public static int process(int[] arr, int l, int r) {
+		//只有一个点时返回小和=0
 		if (l == r) {
 			return 0;
 		}
 		// l < r
 		int mid = l + ((r - l) >> 1);
-		return 
-				process(arr, l, mid) 
-				+ 
-				process(arr, mid + 1, r) 
-				+ 
-				merge(arr, l, mid, r);
+
+
+//		return
+//				process(arr, l, mid)
+//				+
+//				process(arr, mid + 1, r)
+//				+
+//				merge(arr, l, mid, r);
+
+		//方便debug看结果
+		//将数组部分排列有序，且返回小和
+		 int left = process(arr, l, mid) ;
+		 int right = process(arr, mid + 1, r);
+		 int merge=	merge(arr, l, mid, r);
+
+		 return left + right + merge;
 	}
 
 	public static int merge(int[] arr, int L, int m, int r) {
@@ -47,6 +61,7 @@ public class Code02_SmallSum {
 		int p2 = m + 1;
 		int res = 0;
 		while (p1 <= m && p2 <= r) {
+			//【在次统计】
 			res += arr[p1] < arr[p2] ? (r - p2 + 1) * arr[p1] : 0;
 			help[i++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++];
 		}
@@ -128,7 +143,7 @@ public class Code02_SmallSum {
 	}
 
 	// for test
-	public static void main(String[] args) {
+	public static void main0(String[] args) {
 		int testTime = 500000;
 		int maxSize = 100;
 		int maxValue = 100;
@@ -146,5 +161,15 @@ public class Code02_SmallSum {
 		System.out.println(succeed ? "Nice!" : "Fucking fucked!");
 	}
 
-
+	public static void main(String[] args) {
+		int testTime = 5;
+		int maxSize = 10;
+		int maxValue = 10;
+		boolean succeed = true;
+		for (int i = 0; i < testTime; i++) {
+			int[] arr1 = generateRandomArray(maxSize, maxValue);
+			System.out.println(smallSum(arr1));
+		}
+		System.out.println(succeed ? "Nice!" : "Fucking fucked!");
+	}
 }

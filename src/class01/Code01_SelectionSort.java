@@ -20,6 +20,12 @@ public class Code01_SelectionSort {
 		}
 	}
 
+	/**
+	 * my
+	 */
+	public static void selectionSortMy(int[] arr) {
+	}
+
 	public static void swap(int[] arr, int i, int j) {
 		int tmp = arr[i];
 		arr[i] = arr[j];
@@ -95,7 +101,12 @@ public class Code01_SelectionSort {
 		for (int i = 0; i < testTime; i++) {
 			int[] arr1 = generateRandomArray(maxSize, maxValue);
 			int[] arr2 = copyArray(arr1);
-			selectionSort(arr1);
+			/**
+			 * my
+			 */
+//			selectionSort(arr1);
+			selectionSortMy(arr1);
+
 			comparator(arr2);
 			if (!isEqual(arr1, arr2)) {
 				succeed = false;
@@ -106,10 +117,10 @@ public class Code01_SelectionSort {
 		}
 		System.out.println(succeed ? "Nice!" : "Fucking fucked!");
 
-		int[] arr = generateRandomArray(maxSize, maxValue);
-		printArray(arr);
-		selectionSort(arr);
-		printArray(arr);
+//		int[] arr = generateRandomArray(maxSize, maxValue);
+//		printArray(arr);
+//		selectionSort(arr);
+//		printArray(arr);
 	}
 
 }

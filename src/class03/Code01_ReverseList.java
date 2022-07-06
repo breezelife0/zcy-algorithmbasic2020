@@ -6,6 +6,7 @@ import java.util.List;
 // ** 单链表和双链表 **
 // 1.单链表和双链表如何反转
 
+
 public class Code01_ReverseList {
 
 	public static class Node {
@@ -31,6 +32,7 @@ public class Code01_ReverseList {
 	//   a    ->   b    ->  c  ->  null
 	//   c    ->   b    ->  a  ->  null
 	public static Node reverseLinkedList(Node head) {
+		// 预设pre， next两个字段， 迭代赋值pre ,head(cur), next三个字段
 		Node pre = null;
 		Node next = null;
 		while (head != null) {
@@ -42,7 +44,15 @@ public class Code01_ReverseList {
 		return pre;
 	}
 
+
+	public static Node reverseLinkedListMy(Node head) {
+//	 	return null;
+		return reverseLinkedList(head);
+	}
+
+	//
 	public static DoubleNode reverseDoubleList(DoubleNode head) {
+		// 预设pre， next两个字段， 迭代赋值pre ,head(cur), next三个字段
 		DoubleNode pre = null;
 		DoubleNode next = null;
 		while (head != null) {
@@ -53,6 +63,20 @@ public class Code01_ReverseList {
 			head = next;
 		}
 		return pre;
+	}
+
+
+	public static DoubleNode reverseDoubleListMy(DoubleNode head) {
+		DoubleNode last = null;
+		DoubleNode next = null;
+		while (head != null) {
+			next = head.next;
+			head.next = last;
+			head.last = next;
+			last =  head;
+			head = next;
+		}
+		return last;
 	}
 
 	public static Node testReverseLinkedList(Node head) {
@@ -190,7 +214,7 @@ public class Code01_ReverseList {
 		for (int i = 0; i < testTime; i++) {
 			Node node1 = generateRandomLinkedList(len, value);
 			List<Integer> list1 = getLinkedListOriginOrder(node1);
-			node1 = reverseLinkedList(node1);
+			node1 = reverseLinkedListMy(node1);
 			if (!checkLinkedListReverse(list1, node1)) {
 				System.out.println("Oops1!");
 			}
@@ -204,14 +228,14 @@ public class Code01_ReverseList {
 
 			DoubleNode node3 = generateRandomDoubleList(len, value);
 			List<Integer> list3 = getDoubleListOriginOrder(node3);
-			node3 = reverseDoubleList(node3);
+			node3 = reverseDoubleListMy(node3);
 			if (!checkDoubleListReverse(list3, node3)) {
 				System.out.println("Oops3!");
 			}
 
 			DoubleNode node4 = generateRandomDoubleList(len, value);
 			List<Integer> list4 = getDoubleListOriginOrder(node4);
-			node4 = reverseDoubleList(node4);
+			node4 = reverseDoubleListMy(node4);
 			if (!checkDoubleListReverse(list4, node4)) {
 				System.out.println("Oops4!");
 			}
