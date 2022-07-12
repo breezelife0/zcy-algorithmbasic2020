@@ -1,5 +1,6 @@
 package class11;
 
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -39,6 +40,10 @@ public class Code01_LevelTraversalBT {
 		}
 	}
 
+	public static void levelMy(Node head){
+
+	}
+
 	public static void main(String[] args) {
 		Node head = new Node(1);
 		head.left = new Node(2);
@@ -50,6 +55,9 @@ public class Code01_LevelTraversalBT {
 
 		level(head);
 		System.out.println("========");
+		levelMy(head);
+		System.out.println("========");
+
 	}
 
 }

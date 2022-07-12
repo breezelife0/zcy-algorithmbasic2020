@@ -25,12 +25,14 @@ public class Code04_PrintBinaryTree {
 			return;
 		}
 		printInOrder(head.right, height + 1, "v", len);
+
 		String val = to + head.value + to;
 		int lenM = val.length();
 		int lenL = (len - lenM) / 2;
 		int lenR = len - lenM - lenL;
 		val = getSpace(lenL) + val + getSpace(lenR);
 		System.out.println(getSpace(height * len) + val);
+
 		printInOrder(head.left, height + 1, "^", len);
 	}
 
@@ -70,6 +72,9 @@ public class Code04_PrintBinaryTree {
 		head.right.right = new Node(1);
 		head.left.left.right = new Node(1);
 		printTree(head);
+		
+
+		
 
 	}
 

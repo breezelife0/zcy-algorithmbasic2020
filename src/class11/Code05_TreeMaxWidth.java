@@ -1,5 +1,7 @@
 package class11;
 
+
+
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -18,6 +20,7 @@ public class Code05_TreeMaxWidth {
 		}
 	}
 
+	//入队列时记录该节点的level,出队列统计该层个数，出队列的节点的Level发生变化，结算上一层。
 	public static int maxWidthUseMap(Node head) {
 		if (head == null) {
 			return 0;
@@ -28,11 +31,13 @@ public class Code05_TreeMaxWidth {
 		HashMap<Node, Integer> levelMap = new HashMap<>();
 		levelMap.put(head, 1);
 		int curLevel = 1; // 当前你正在统计哪一层的宽度
+		// !!! 出队列时计数
 		int curLevelNodes = 0; // 当前层curLevel层，宽度目前是多少
+
 		int max = 0;
 		while (!queue.isEmpty()) {
 			Node cur = queue.poll();
-			int curNodeLevel = levelMap.get(cur);
+			int curNodeLevel = levelMap.get(cur); //
 			if (cur.left != null) {
 				levelMap.put(cur.left, curNodeLevel + 1);
 				queue.add(cur.left);
@@ -43,17 +48,25 @@ public class Code05_TreeMaxWidth {
 			}
 			if (curNodeLevel == curLevel) {
 				curLevelNodes++;
-			} else {
+			} else {//到了下一层
+				//有最新层时，结算上一层
 				max = Math.max(max, curLevelNodes);
 				curLevel++;
 				curLevelNodes = 1;
 			}
 		}
+		// 最后一层没有新的层，单独结算
 		max = Math.max(max, curLevelNodes);
 		return max;
 	}
 
-	public static int maxWidthNoMap(Node head) {
+	public static int maxWidthUseMapMy(Node head) {
+		return 1;
+	}
+
+
+
+	public static int maxWidthNoMap(Node head){
 		if (head == null) {
 			return 0;
 		}
@@ -83,6 +96,12 @@ public class Code05_TreeMaxWidth {
 		return max;
 	}
 
+	//更简单些
+	public static int maxWidthNoMapMy(Node head) {
+		return 1;
+
+	}
+
 	// for test
 	public static Node generateRandomBST(int maxLevel, int maxValue) {
 		return generate(1, maxLevel, maxValue);
@@ -105,7 +124,7 @@ public class Code05_TreeMaxWidth {
 		int testTimes = 1000000;
 		for (int i = 0; i < testTimes; i++) {
 			Node head = generateRandomBST(maxLevel, maxValue);
-			if (maxWidthUseMap(head) != maxWidthNoMap(head)) {
+			if (maxWidthUseMap(head) != maxWidthNoMapMy(head)) {
 				System.out.println("Oops!");
 			}
 		}
