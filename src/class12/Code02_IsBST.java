@@ -112,6 +112,8 @@ public class Code02_IsBST {
 		head.right = generate(level + 1, maxLevel, maxValue);
 		return head;
 	}
+	
+
 
 	public static void main(String[] args) {
 		int maxLevel = 4;

@@ -12,7 +12,18 @@ import java.util.PriorityQueue;
 //		但如果先把长度60的金条分成30和30，花费60;再把长度30金条分成10和20， 花费30;一共花费90铜板。
 //		输入一个数组，返回分割的最小代价。
 
-// 哈夫曼树
+
+
+// 【堆】和【排序】是贪心算法中最常用的技巧！
+
+
+//哈夫曼的特点：
+//
+//		1.权值越大的叶子节点越靠近根节点，权值越小的叶子节点越远离根节点。
+//
+//		2.只有度为0（叶子节点）和度为2（分支节点）的节点，没有度为1的节点。
+
+
 
 public class Code02_LessMoneySplitGold {
 
@@ -23,6 +34,9 @@ public class Code02_LessMoneySplitGold {
 		}
 		return process(arr, 0);
 	}
+
+	// !!!breeze-todo
+	//test 暴力递归对数器！所有情况都尝试！
 
 	// 等待合并的数都在arr里，pre之前的合并行为产生了多少总代价
 	// arr中只剩一个数字的时候，停止合并，返回最小的总代价
@@ -51,16 +65,20 @@ public class Code02_LessMoneySplitGold {
 		return ans;
 	}
 
+	// 哈夫曼树!
 	public static int lessMoney2(int[] arr) {
+		//默认小根堆
 		PriorityQueue<Integer> pQ = new PriorityQueue<>();
 		for (int i = 0; i < arr.length; i++) {
 			pQ.add(arr[i]);
 		}
 		int sum = 0;
 		int cur = 0;
+
+		// !!!breeze:最少2个，而不是1个！
 		while (pQ.size() > 1) {
 			cur = pQ.poll() + pQ.poll();
-			sum += cur;
+			sum += cur; //累加非叶子节点
 			pQ.add(cur);
 		}
 		return sum;
@@ -75,13 +93,17 @@ public class Code02_LessMoneySplitGold {
 		return arr;
 	}
 
+	public static int lessMoney2My(int[] arr) {
+		return 0;
+
+	}
 	public static void main(String[] args) {
 		int testTime = 100000;
 		int maxSize = 6;
 		int maxValue = 1000;
 		for (int i = 0; i < testTime; i++) {
 			int[] arr = generateRandomArray(maxSize, maxValue);
-			if (lessMoney1(arr) != lessMoney2(arr)) {
+			if (lessMoney1(arr) != lessMoney2My(arr)) {
 				System.out.println("Oops!");
 			}
 		}

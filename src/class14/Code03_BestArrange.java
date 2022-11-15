@@ -21,7 +21,7 @@ public class Code03_BestArrange {
 		}
 	}
 
-	// 暴力！所有情况都尝试！
+	//test 暴力递归对数器！所有情况都尝试！
 	public static int bestArrange1(Program[] programs) {
 		if (programs == null || programs.length == 0) {
 			return 0;
@@ -35,22 +35,23 @@ public class Code03_BestArrange {
 	
 	// 目前来到timeLine的时间点，已经安排了done多的会议，剩下的会议programs可以自由安排
 	// 返回能安排的最多会议数量
-	public static int process(Program[] programs, int done, int timeLine) {
-		if (programs.length == 0) {
-			return done;
+	public static int process(Program[] programs, int doneNum, int timeLine) {
+		if (programs.length == 0) { //basecase
+			return doneNum;
 		}
 		// 还剩下会议
-		int max = done;
+		int max = doneNum;
 		// 当前安排的会议是什么会，每一个都枚举
 		for (int i = 0; i < programs.length; i++) {
+			//!!!breeze包含等于
 			if (programs[i].start >= timeLine) {
-				Program[] next = copyButExcept(programs, i);
-				max = Math.max(max, process(next, done + 1, programs[i].end));
+				Program[] next = copyButExcept(programs, i); //copy的，不用恢复现场
+				max = Math.max(max, process(next, doneNum + 1, programs[i].end));
 			}
 		}
 		return max;
 	}
-
+	
 	public static Program[] copyButExcept(Program[] programs, int i) {
 		Program[] ans = new Program[programs.length - 1];
 		int index = 0;
@@ -86,6 +87,19 @@ public class Code03_BestArrange {
 
 	}
 
+	public static int bestArrange2My(Program[] programs) {
+		 return 0;
+	}
+
+
+	private static class MyComparator implements Comparator<Program> {
+		@Override
+		public int compare(Program o1, Program o2) {
+			return o1.end - o2.end;
+		}
+	}
+
+
 	// for test
 	public static Program[] generatePrograms(int programSize, int timeMax) {
 		Program[] ans = new Program[(int) (Math.random() * (programSize + 1))];
@@ -101,13 +115,34 @@ public class Code03_BestArrange {
 		return ans;
 	}
 
+
+	public static int bestArrange1My(Program[] programs) {
+		if(programs == null || programs.length == 0) {
+			return 0;
+		}
+		return processMy(programs, 0, 0);
+	}
+	public static int processMy(Program[] programs, int doneNum, int timeEnd){
+		if(programs.length == 0) {
+			return doneNum;
+		}
+		int max = doneNum;
+		for (int i = 0; i < programs.length; i++) {
+			if(programs[i].start >= timeEnd) {
+				int cur =  processMy(copyButExcept(programs, i), doneNum+1, programs[i].end);
+				max = Math.max(max, cur);
+			}
+		}
+		return max;
+	}
+
 	public static void main(String[] args) {
 		int programSize = 12;
 		int timeMax = 20;
 		int timeTimes = 1000000;
 		for (int i = 0; i < timeTimes; i++) {
 			Program[] programs = generatePrograms(programSize, timeMax);
-			if (bestArrange1(programs) != bestArrange2(programs)) {
+			if (bestArrange1(programs) != bestArrange2My(programs)) {
 				System.out.println("Oops!");
 			}
 		}

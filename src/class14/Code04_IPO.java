@@ -14,7 +14,7 @@ import java.util.PriorityQueue;
 
 public class Code04_IPO {
 
-	// 最多K个项目
+	// 最多K个项目(重点！因为有项目数的限制，选收益率高的，不一定最终收益多)
 	// W是初始资金
 	// Profits[] Capital[] 一定等长
 	// 返回最终最大的资金
@@ -24,13 +24,16 @@ public class Code04_IPO {
 		for (int i = 0; i < Profits.length; i++) {
 			minCostQ.add(new Program(Profits[i], Capital[i]));
 		}
+		//!!!BREEZE:K个 同length
 		for (int i = 0; i < K; i++) {
 			while (!minCostQ.isEmpty() && minCostQ.peek().c <= W) {
 				maxProfitQ.add(minCostQ.poll());
 			}
+			//上面一步，没有w能cover的项目
 			if (maxProfitQ.isEmpty()) {
 				return W;
 			}
+			//直接做利润最大的项目
 			W += maxProfitQ.poll().p;
 		}
 		return W;

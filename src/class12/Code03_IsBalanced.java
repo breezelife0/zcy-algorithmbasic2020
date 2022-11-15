@@ -68,11 +68,7 @@ public class Code03_IsBalanced {
 		}
 		return new Info(isBalanced, height);
 	}
-	
-	
-	
-	
-	
+
 
 	// for test
 	public static Node generateRandomBST(int maxLevel, int maxValue) {
@@ -89,6 +85,7 @@ public class Code03_IsBalanced {
 		head.right = generate(level + 1, maxLevel, maxValue);
 		return head;
 	}
+
 
 	public static void main(String[] args) {
 		int maxLevel = 5;
