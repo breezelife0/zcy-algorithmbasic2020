@@ -2,6 +2,13 @@ package class02;
 
 // ** 认识异或运算 **
 // 2. 一个数组中有一种数出现了奇数次，其他数都出现了偶数次，怎么找到并打印这种数
+// https://blog.csdn.net/qq_52880445/article/details/122846587
+//思路
+//
+//		我们先整体异或运算，这样子得要的是一个数是a ^ b,这里的ab是指为奇数次的这两个数。
+//		然后我们提取eor中最右边的值，因为这个值就代表了a和b不同的那一位。（固定写法）
+//		我们通过这个数字就可以将a和b分开，然后得要a或者b
+//		最后通过得到的数和eor进行异或运算得到另外一位。
 
 public class Code02_EvenTimesOddTimes {
 
@@ -9,6 +16,18 @@ public class Code02_EvenTimesOddTimes {
 	public static void printOddTimesNum1(int[] arr) {
 		int eor = 0;
 		for (int i = 0; i < arr.length; i++) {
+			eor ^= arr[i];
+		}
+		System.out.println(eor);
+	}
+
+	/**
+	 * breeze:好像也行
+	 * @param arr
+	 */
+	public static void printOddTimesNum1_breeze(int[] arr) {
+		int eor = arr[0];
+		for (int i = 1; i < arr.length; i++) {
 			eor ^= arr[i];
 		}
 		System.out.println(eor);
@@ -65,21 +84,14 @@ public class Code02_EvenTimesOddTimes {
 	
 	
 	public static void main(String[] args) {
-		int a = 5;
-		int b = 7;
+//		int[] arr0 = { 3, 3, 3, 8, 3 ,10};
+		int[] arr0 = {10, 3, 3, 3, 3 ,10, 3,10,3, 5,5};
+		printOddTimesNum1(arr0);
+		printOddTimesNum1_breeze(arr0);
 
-		a = a ^ b;
-		b = a ^ b;
-		a = a ^ b;
-
-		System.out.println(a);
-		System.out.println(b);
-
-		int[] arr1 = { 3, 3, 2, 3, 1, 1, 1, 3, 1, 1, 1 };
-		printOddTimesNum1(arr1);
 
 		int[] arr2 = { 4, 3, 4, 2, 2, 2, 4, 1, 1, 1, 3, 3, 1, 1, 1, 4, 2, 2 };
-		printOddTimesNum2(arr2);
+ 		printOddTimesNum2(arr2);
 
 	}
 

@@ -73,7 +73,7 @@ public class Code05_UnionFind {
 			}
 			return cur;
 		}
-+
+
 		// 调用频繁，时间复杂度0(1)
 		public boolean isSameSet(V a, V b) {
 			return findFather(nodes.get(a)) == findFather(nodes.get(b));

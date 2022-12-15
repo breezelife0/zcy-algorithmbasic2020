@@ -9,8 +9,11 @@ import java.util.HashSet;
 // 输入一定能够保证，数组中所有的数都出现了M次，只有一种数出现了K次
 // 1 <= K < M
 // 返回这种数
-public class 	Code03_KM {
+/**
+ * @author
+ */
 
+public class 	Code03_KM {
 	public static int test(int[] arr, int k, int m) {
 		HashMap<Integer, Integer> map = new HashMap<>();
 		for (int num : arr) {

@@ -3,6 +3,7 @@ package class02;
 // ** 认识异或运算 **
 // 1.如何不用额外变量交换两个数
 //
+
 //一、异或运算符
 //		在数字逻辑中，逻辑算符异或（exclusive or）是对两个运算元的一种逻辑分析类型，符号为 XOR 或 ⊕（编程语言中常用 ^）。
 
@@ -11,11 +12,32 @@ package class02;
 //		结论.别这么干
 
 public class Code01_Swap {
-	
 	public static void main(String[] args) {
 
-		
-		
+		int a = 16;
+		int b = 603;
+
+		int x, y;
+
+		System.out.println(a);
+		System.out.println(b);
+
+
+/**
+ *  	a = a ^ b;
+ * 		b = a ^ b;
+ * 		a = a ^ b;
+ */
+		x = a ^ b  ^ a ^ b ^ b;
+		y = a ^ b ^ b;
+
+
+		System.out.println(x);
+		System.out.println(y);
+	}
+
+	public static void main0(String[] args) {
+
 		int a = 16;
 		int b = 603;
 		
@@ -26,8 +48,9 @@ public class Code01_Swap {
 		a = a ^ b;
 		b = a ^ b;
 		a = a ^ b;
-		
-		
+
+
+
 		System.out.println(a);
 		System.out.println(b);
 		
@@ -45,14 +68,7 @@ public class Code01_Swap {
 		
 		System.out.println(arr[i] + " , " + arr[j]);
 		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		System.out.println(arr[0]);
 		System.out.println(arr[2]);
 		
