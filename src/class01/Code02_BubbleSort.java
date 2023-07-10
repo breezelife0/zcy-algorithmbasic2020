@@ -20,10 +20,33 @@ public class Code02_BubbleSort {
 		}
 	}
 
-
+	/**
+	 * 此处对代码做了一个小优化，加入了 is_sorted Flag，
+	 * 目的是将算法的最佳时间复杂度优化为 O(n)，即当原输入序列就是排序好的情况下，该算法的时间复杂度就是 O(n)。
+	 * @param arr
+	 */
 	public static void bubbleSortMy(int[] arr){
-
-	}
+		if (arr == null || arr.length < 2) {
+			return;
+		}
+		for (int i = 1; i < arr.length; i++) {
+			// Set a flag, if true, that means the loop has not been swapped,
+			// that is, the sequence has been ordered, the sorting has been completed.
+			boolean flag = true;
+			for (int j = 0; j < arr.length - i; j++) {
+				if (arr[j] > arr[j + 1]) {
+					int tmp = arr[j];
+					arr[j] = arr[j + 1];
+					arr[j + 1] = tmp;
+					// Change flag
+					flag = false;
+				}
+			}
+			if (flag) {
+				break;
+			}
+		}
+ 	}
 
 
 	// 交换arr的i和j位置上的值

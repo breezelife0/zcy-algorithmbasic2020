@@ -1,7 +1,8 @@
 package class05;
 // ** 快速排序 **
 // 2.快排3个版本
-// Partition过程 ：给定一个数组arr，和一个整数num。请把小于等于num的数放在数组的左边，大于num的数放在数组的右边。(左边或右边不需要有序)，要求额外空间复杂度O(1)，时间复杂度O(N)
+// Partition过程 ：给定一个数组arr，和一个整数num。请把小于等于num的数放在数组的左边，大于num的数放在数组的右边。
+// (左边或右边不需要有序)，要求额外空间复杂度O(1)，时间复杂度O(N)
 // 荷兰国旗：包含等于区
 
 //[时间复杂度]
@@ -294,9 +295,18 @@ public class Code02_PartitionAndQuickSort {
 	}
 
 	public static void main(String[] args) {
-		int[] arr = new int[]{-65, -69, -62 };
-//		quickSortMy2(arr);
-		quickSort2(arr);
+//		int[] arr = new int[]{-65, -69, -62 };
+////		quickSortMy2(arr);
+////		quickSort2(arr);
+		long N = 2;
+		int j;
+		for (int i = 0; i < 20; i++) {
+			j = (int) (Math.random() * N);
+			System.out.println(j);
+
+		}
+
+
 	}
 
 }

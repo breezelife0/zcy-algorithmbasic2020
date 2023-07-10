@@ -1,5 +1,5 @@
 package class05;
-// ** 递归-归并排序 ** todo do
+// ** 递归-归并排序 **
 //
 //1、给你一个整数数组nums 以及两个整数lower 和 upper 。求数组中，值位于范围 [lower, upper] （包含lower和upper）之内的 区间和的个数 。
 //

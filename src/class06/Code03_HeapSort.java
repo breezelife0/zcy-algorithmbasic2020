@@ -1,12 +1,26 @@
 package class06;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 // ** 堆 **
 // 3. 堆排序
-// 1.先把数组调成大根堆，2.再从堆定拿最大值,放在arr[heapSize]，然后恢复堆结构 3.heapSize--,重复2
+// 1.先把数组调成【大根堆】，2.再从堆定拿最大值,放在arr[heapSize]，然后恢复堆结构 3.heapSize--,重复2
+// 参考： https://blog.csdn.net/q925092273/article/details/109462468
 
+/**
+ * 最大堆：父节点永远比子节点大。
+ * 最小堆：父节点永远比子节点小。
+ * (左右孩子没有大小关系)
+ *
+ * 如果把一个数组排成完全二叉树，则是下标循环时，是从上到下，从左到右,进行填充
+ *
+ * i的左子节点下标：2*i+1 ,如果越界，证明左孩子不存在
+ * i的右子节点下标：2*i+2，如果越界，证明右孩子不存在
+ * i的父节点下标：(i-1)/2,注意下标0位置求父节点，(0-1)/2 = 0
+ * 第一个非叶子结点 arr.length/2-1
+ */
 public class Code03_HeapSort {
     // 堆排序额外空间复杂度O(1)
     public static void heapSort(int[] arr) {
@@ -17,10 +31,18 @@ public class Code03_HeapSort {
 //		for (int i = 0; i < arr.length; i++) { // O(N)
 //			heapInsert(arr, i); // O(logN)
 //		}
-        // O(N)
-        for (int i = arr.length - 1; i >= 0; i--) {
-            heapify(arr, i, arr.length);
 
+
+        // O(N)
+//        for (int i = arr.length - 1; i >= 0; i--) {
+//            heapify(arr, i, arr.length);
+//
+//        }
+		/**
+		 * 优化，从第一个非叶子节点开始
+		 */
+		for (int i = arr.length/2 - 1; i >= 0; i--) {
+            heapify(arr, i, arr.length);
         }
 
         int heapSize = arr.length;
@@ -32,19 +54,6 @@ public class Code03_HeapSort {
         }
     }
 
-	public static void heapSortMy(int[] arr) {
-		if(arr == null || arr.length < 2) {
-			return;
-		}
-		for(int i= arr.length-1 ; i>= 0; i--){
-			heapify(arr, i, arr.length);
-		}
-		int heapSize = arr.length;
-		while (heapSize >0){
-			swap(arr, 0, --heapSize);
-			heapify(arr, 0, heapSize);
-		}
-	}
 
 
 	// arr[index]刚来的数，往上
@@ -144,9 +153,7 @@ public class Code03_HeapSort {
 		System.out.println();
 	}
 
-	// for test
-	public static void main(String[] args) {
-
+	public static void main0(String[] args) {
 		// 默认小根堆
 		PriorityQueue<Integer> heap = new PriorityQueue<>();
 		heap.add(6);
@@ -160,11 +167,28 @@ public class Code03_HeapSort {
 			System.out.println(heap.poll());
 		}
 
+
+		int[]arr =new int[5];
+		arr[0] = 3;
+		arr[1] = 2;
+		arr[2] = 5;
+		arr[3] = 1;
+		arr[4] = 4;
+
+		printArray(arr);
+		heapSort(arr);
+		printArray(arr);
+	}
+	// for test
+	public static void main(String[] args) {
+
+
 		int testTime = 500000;
 		int maxSize = 100;
 		int maxValue = 100;
 		boolean succeed = true;
 		for (int i = 0; i < testTime; i++) {
+			System.out.println(i);
 			int[] arr1 = generateRandomArray(maxSize, maxValue);
 			int[] arr2 = copyArray(arr1);
 			heapSort(arr1);

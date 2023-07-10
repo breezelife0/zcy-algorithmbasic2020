@@ -85,13 +85,13 @@ public class Code02_EvenTimesOddTimes {
 	
 	public static void main(String[] args) {
 //		int[] arr0 = { 3, 3, 3, 8, 3 ,10};
-		int[] arr0 = {10, 3, 3, 3, 3 ,10, 3,10,3, 5,5};
+		int[] arr0 = {10, 3, 3, 3, 3 ,10, 3,10,3, 5,5, 11};
 		printOddTimesNum1(arr0);
-		printOddTimesNum1_breeze(arr0);
+//		printOddTimesNum1_breeze(arr0);
 
-
-		int[] arr2 = { 4, 3, 4, 2, 2, 2, 4, 1, 1, 1, 3, 3, 1, 1, 1, 4, 2, 2 };
- 		printOddTimesNum2(arr2);
+//
+//		int[] arr2 = { 4, 3, 4, 2, 2, 2, 4, 1, 1, 1, 3, 3, 1, 1, 1, 4, 2, 2 };
+// 		printOddTimesNum2(arr2);
 
 	}
 

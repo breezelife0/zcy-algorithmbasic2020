@@ -10,8 +10,13 @@ import java.util.PriorityQueue;
 
 // 指令量在10^8内，时间校验可以过，也可以通过此技巧猜测可行的时间复杂度
 
+/**
+ * 堆和有序表结合的贪心考题类型，几乎是互联网大厂的第一题的标配题型，因此理解本题，对于你应对大厂笔试有非常大的帮助
+ */
+
 public class Code01_CoverMax {
 
+	//暴力遍历
 	//O（(max-min)*N）
 	public static int maxCover1(int[][] lines) {
 		int min = Integer.MAX_VALUE;
@@ -103,6 +108,63 @@ public class Code01_CoverMax {
 		}
 		return max;
 	}
+
+
+	/**
+	 * maxCover4
+	 * https://blog.csdn.net/weixin_46838716/article/details/124930008
+	 */
+	public static int mostNumCoverLine(int[][] arr){
+		if (arr == null || arr.length == 0) return 0;
+
+		//（1）将线段整合为Line数据结构lines
+		int N = arr.length;
+		Line[] lines = new Line[N];
+		for (int i = 0; i < N; i++) {
+			lines[i] = new Line(arr[i][0], arr[i][1]);//变统一的线段数据结构
+		}
+		//（2）将lines **按照每条线段的start升序排序**
+		Arrays.sort(lines, new startReviewComparator());
+
+		//（3）准备一个小根堆heap，排序方式是**线段的end降序排列**
+		PriorityQueue<Line> heap = new PriorityQueue<>(new endReviewComparator());
+
+		int max = 0;
+		//（4）遍历lines的每一条线i，看看有多少条线会影响我，跟我重合，更新max
+		for (int i = 0; i < N; i++) {
+			Line cur = lines[i];//当前线段
+			//具体咋操作呢？就是让**小根堆中end<=line[i].start的那些线段，弹出去，他们不会跟我重合的**
+			while (!heap.isEmpty() && heap.peek().end <= cur.start) {
+				heap.poll();
+			}
+			//然后把我line[i]加入小根堆，此时能影响我line[i]的线段们都留在小根堆中了，
+			heap.add(cur);
+			// 小根堆的size就是重合数量，更新给max
+			max = Math.max(max, heap.size());
+		}
+		//（5）所有线段操作完，结果max已经得到了最大值。
+
+		return max;
+	}
+
+	//线段cur按照start排序升序
+	public static class startReviewComparator implements Comparator<Line>{
+		@Override
+		public int compare(Line o1, Line o2){
+			return o1.start - o2.start;//返回-1，o1放前面
+		}
+	}
+
+	//线段cur按照end升序降序，小根堆的比较器
+	public static class endReviewComparator implements Comparator<Line>{
+		@Override
+		public int compare(Line o1, Line o2){
+			return o1.end - o2.end;//返回-1，o1放上面
+		}
+	}
+
+
+
 
 	// for test
 	public static int[][] generateLines(int N, int L, int R) {

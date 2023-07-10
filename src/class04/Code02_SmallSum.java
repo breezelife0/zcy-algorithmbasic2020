@@ -162,13 +162,17 @@ public class Code02_SmallSum {
 	}
 
 	public static void main(String[] args) {
-		int testTime = 5;
+		int testTime = 3;
 		int maxSize = 10;
 		int maxValue = 10;
 		boolean succeed = true;
 		for (int i = 0; i < testTime; i++) {
+
 			int[] arr1 = generateRandomArray(maxSize, maxValue);
+			printArray(arr1);
 			System.out.println(smallSum(arr1));
+			printArray(arr1);
+			System.out.println("______");
 		}
 		System.out.println(succeed ? "Nice!" : "Fucking fucked!");
 	}
