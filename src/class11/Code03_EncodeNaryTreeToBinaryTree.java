@@ -5,6 +5,7 @@ import java.util.List;
 
 // ** 二叉树 **
 // 3. 将N叉树编码为二叉树
+// 多叉树的二叉树表示法（左儿子右兄弟） https://blog.csdn.net/weixin_46065476/article/details/122315530
 
 // 本题测试链接：https://leetcode.cn/problems/encode-n-ary-tree-to-binary-tree
 public class Code03_EncodeNaryTreeToBinaryTree {

@@ -2,6 +2,16 @@ package class09;
 
 import java.util.ArrayList;
 
+/**
+ * 【快慢指针】
+ * 0，1， 2， 3
+ * 1. 寻找链表的中点或上中点：1
+ * 2. 寻找链表的中点或下中点：2
+ * 3. 寻找链表的中点或上中点的前一个节点：0
+ * 4. 寻找链表的中点或下中点的前一个节点: 1
+ *
+ * leecode :  https://leetcode.cn/problems/middle-of-the-linked-list/submissions/
+ */
 public class Code01_LinkedListMid {
 
 	public static class Node {
@@ -13,6 +23,7 @@ public class Code01_LinkedListMid {
 		}
 	}
 
+	// 4/2=2 3/2=2
 	// head 头
 	public static Node midOrUpMidNode(Node head) {
 		if (head == null || head.next == null || head.next.next == null) {
@@ -122,40 +133,50 @@ public class Code01_LinkedListMid {
 		return arr.get((arr.size() - 2) / 2);
 	}
 
+	/**
+	 * 1, 2, 3, 4, 5, 6
+	 */
 	public static void main(String[] args) {
 		Node test = null;
-		test = new Node(0);
-		test.next = new Node(1);
-		test.next.next = new Node(2);
-		test.next.next.next = new Node(3);
-		test.next.next.next.next = new Node(4);
-		test.next.next.next.next.next = new Node(5);
-		test.next.next.next.next.next.next = new Node(6);
-		test.next.next.next.next.next.next.next = new Node(7);
-		test.next.next.next.next.next.next.next.next = new Node(8);
+		test = new Node(1);
+		test.next = new Node(2);
+		test.next.next = new Node(3);
+		test.next.next.next = new Node(4);
+		test.next.next.next.next = new Node(5);
+		test.next.next.next.next.next = new Node(6);
+//		test.next.next.next.next.next.next = new Node(7);
+//		test.next.next.next.next.next.next.next = new Node(8);
+//		test.next.next.next.next.next.next.next.next = new Node(9);
 
 		Node ans1 = null;
 		Node ans2 = null;
+
 
 		ans1 = midOrUpMidNode(test);
 		ans2 = right1(test);
 		System.out.println(ans1 != null ? ans1.value : "无");
 		System.out.println(ans2 != null ? ans2.value : "无");
+		System.out.println("================");
+
 
 		ans1 = midOrDownMidNode(test);
 		ans2 = right2(test);
 		System.out.println(ans1 != null ? ans1.value : "无");
 		System.out.println(ans2 != null ? ans2.value : "无");
+		System.out.println("================");
 
 		ans1 = midOrUpMidPreNode(test);
 		ans2 = right3(test);
 		System.out.println(ans1 != null ? ans1.value : "无");
 		System.out.println(ans2 != null ? ans2.value : "无");
+		System.out.println("================");
 
 		ans1 = midOrDownMidPreNode(test);
 		ans2 = right4(test);
 		System.out.println(ans1 != null ? ans1.value : "无");
 		System.out.println(ans2 != null ? ans2.value : "无");
+
+
 
 	}
 

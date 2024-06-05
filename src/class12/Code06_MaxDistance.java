@@ -21,6 +21,11 @@ public class Code06_MaxDistance {
 		}
 	}
 
+	/**
+	 * 方法一：（先序）序列化后
+	 * @param head
+	 * @return
+	 */
 	public static int maxDistance1(Node head) {
 		if (head == null) {
 			return 0;
@@ -124,6 +129,9 @@ public class Code06_MaxDistance {
 //		return new Info(maxDistance, height);
 //	}
 
+	/**
+	 * 方法二：递归
+	 */
 	public static int maxDistance2(Node head) {
 		return process(head).maxDistance;
 	}

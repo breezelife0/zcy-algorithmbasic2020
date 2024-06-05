@@ -7,6 +7,9 @@ package class11;
 //		例如:N=1时，打印: down N=2时，打印: down down up
 
 // 规律：左子树都是凹，右节点都是凸
+//
+
+
 
 
 public class Code07_PaperFolding {

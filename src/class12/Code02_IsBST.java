@@ -5,6 +5,13 @@ import java.util.ArrayList;
 // ** 二叉树递归套路 **
 // 2.给定一棵二叉树的头节点head，返回这颗二叉树是不是搜索二叉树
 
+/**
+ * 搜索二叉树
+ * 左子树上所有结点的值均小于等于它的根结点的值
+ * 右子树上所有结点的值均大于等于它的根结点的值
+ * 左[最大]<父<右[最小]
+ */
+
 
 public class Code02_IsBST {
 
@@ -18,6 +25,10 @@ public class Code02_IsBST {
 		}
 	}
 
+	/**
+	 * 方法一：中序遍历，序列化后，线性遍历
+	 * 左<头<右
+	 */
 	public static boolean isBST1(Node head) {
 		if (head == null) {
 			return true;
@@ -61,6 +72,10 @@ public class Code02_IsBST {
 
 	}
 
+	/**
+	 * 方法二：递归套路
+	 * 后序
+	 */
 	public static Info process(Node x) {
 		if (x == null) {
 			return null;

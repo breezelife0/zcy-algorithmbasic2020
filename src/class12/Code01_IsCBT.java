@@ -4,10 +4,16 @@ import java.util.LinkedList;
 
 // ** 二叉树递归套路 **
 
+/**
+ * 1）完全二叉树
+ *
+ * 若设二叉树的深度为h，除第 h 层外，其它各层 (1～h-1) 的结点数都达到最大个数，第h 层所有的结点都【连续集中在最左边】，这就是完全二叉树。
+ */
 // 树形dp(动态规划)，
 // 关键是罗列可能性，
 // 需要左右树提供什么信息
 // 后序遍历
+
 
 // 1.给定一棵二叉树的头节点head，返回这颗二叉树中是不是完全二叉树
 
@@ -23,6 +29,10 @@ public class Code01_IsCBT {
 		}
 	}
 
+	/**
+	 * 方法一
+	 * 用队列，按层遍历
+	 */
 	public static boolean isCBT1(Node head) {
 		if (head == null) {
 			return true;
@@ -79,6 +89,12 @@ public class Code01_IsCBT {
 		}
 	}
 
+	/**
+	 * 方法二
+	 * 递归套路
+	 * 向左树和右树要信息
+	 * 左，右-》头： 后序遍历递归
+	 */
 	public static Info process(Node X) {
 		if (X == null) {
 			return new Info(true, true, 0);

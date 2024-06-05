@@ -2,6 +2,9 @@ package class09;
 
 import java.util.Stack;
 
+/**
+ * 回文链表
+ */
 public class Code02_IsPalindromeList {
 
 	public static class Node {
@@ -13,6 +16,10 @@ public class Code02_IsPalindromeList {
 		}
 	}
 
+	/**
+	 * 方法1：用栈存储，依次从弹出比较
+	 * 额外空间n
+	 * */
 	// need n extra space
 	public static boolean isPalindrome1(Node head) {
 		Stack<Node> stack = new Stack<Node>();
@@ -30,21 +37,33 @@ public class Code02_IsPalindromeList {
 		return true;
 	}
 
+	/**
+	 * 方法2 快慢指针+栈
+	 * 额外空间n/2
+	 *
+	 * */
 	// need n/2 extra space
 	public static boolean isPalindrome2(Node head) {
 		if (head == null || head.next == null) {
 			return true;
 		}
-		Node right = head.next;
-		Node cur = head;
-		while (cur.next != null && cur.next.next != null) {
-			right = right.next;
-			cur = cur.next.next;
+		/**
+		 * 1，2，3
+		 * 1,2,3,4
+		 * 后半段，从下中点开始
+		 */
+		//
+		Node slow = head.next;
+
+		Node fast = head;
+		while (fast.next != null && fast.next.next != null) {
+			slow = slow.next;
+			fast = fast.next.next;
 		}
 		Stack<Node> stack = new Stack<Node>();
-		while (right != null) {
-			stack.push(right);
-			right = right.next;
+		while (slow != null) {
+			stack.push(slow);
+			slow = slow.next;
 		}
 		while (!stack.isEmpty()) {
 			if (head.value != stack.pop().value) {
@@ -135,7 +154,6 @@ public class Code02_IsPalindromeList {
 		System.out.println(isPalindrome3(head) + " | ");
 		printLinkedList(head);
 		System.out.println("=========================");
-
 		head = new Node(1);
 		head.next = new Node(1);
 		printLinkedList(head);

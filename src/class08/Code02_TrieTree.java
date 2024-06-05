@@ -2,6 +2,10 @@ package class08;
 
 import java.util.HashMap;
 
+/**
+ * TrieTree(前缀树)
+ * TrieTree 又称为前缀树、字典树，是一种用于字符串处理的结构。给定一个字符串集合（字典），提供下面所述的操作。
+ */
 // 该程序完全正确
 public class Code02_TrieTree {
 

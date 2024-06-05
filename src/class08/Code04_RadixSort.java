@@ -1,7 +1,12 @@
 package class08;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * 基数排序
+ *
+ */
 public class Code04_RadixSort {
 
 	// only for no-negative value
@@ -118,8 +123,9 @@ public class Code04_RadixSort {
 		System.out.println();
 	}
 
+
 	// for test
-	public static void main(String[] args) {
+	public static void main0(String[] args) {
 		int testTime = 500000;
 		int maxSize = 100;
 		int maxValue = 100000;
@@ -142,6 +148,18 @@ public class Code04_RadixSort {
 		printArray(arr);
 		radixSort(arr);
 		printArray(arr);
+
+	}
+
+
+	// for test
+	public static void main(String[] args) {
+		int[] arr = new int[3];
+		arr[0] = 123;
+		arr[1] = 124;
+		arr[2] = 300;
+		radixSort(arr, 0, arr.length - 1, maxbits(arr));
+//		radixSort(arr1);
 
 	}
 

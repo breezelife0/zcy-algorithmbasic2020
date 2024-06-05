@@ -54,7 +54,7 @@ public class Code03_UnRecursiveTraversalBT {
 					//往上弹左边界，再打印该节点的整个左子树(条件1)
 					cur = stack.pop();
 					System.out.print(cur.value + " ");
-					cur = cur.right;
+					cur = cur.right; //从下至上所有右树的左树
 				}
 			}
 		}

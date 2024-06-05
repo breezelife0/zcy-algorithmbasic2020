@@ -24,11 +24,14 @@ public class Code03_SmallerEqualBigger {
 		Node[] nodeArr = new Node[i];
 		i = 0;
 		cur = head;
+		//链表转数组
 		for (i = 0; i != nodeArr.length; i++) {
 			nodeArr[i] = cur;
 			cur = cur.next;
 		}
+		//数组分区
 		arrPartition(nodeArr, pivot);
+		//数组转链表
 		for (i = 1; i != nodeArr.length; i++) {
 			nodeArr[i - 1].next = nodeArr[i];
 		}
@@ -57,6 +60,9 @@ public class Code03_SmallerEqualBigger {
 		nodeArr[b] = tmp;
 	}
 
+	/**
+	 * 链表直接分区后，串联
+	 */
 	public static Node listPartition2(Node head, int pivot) {
 		Node sH = null; // small head
 		Node sT = null; // small tail

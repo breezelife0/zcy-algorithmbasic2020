@@ -1,5 +1,15 @@
 package class10;
 
+/**
+ * 求两链表的相交点
+ * 根据有无环，分为以下情况：
+ * 1，都无环，Y型相交；2一个有环一个无环：不可能相交； 3.都有环：1）Yb型，2）电视天线型
+ * 知识点：怎么找环的入环节点：快慢指针：https://zhuanlan.zhihu.com/p/103626709
+ *     两个结论：
+ * 设置快慢指针，假如有环，他们最后一定相遇在环中。
+ * 两个指针相遇后，让两个指针分别从链表头和相遇点重新出发，每次走一步，最后一定相遇于环入口。
+ *
+ */
 public class Code01_FindFirstIntersectNode {
 
 	public static class Node {
@@ -12,9 +22,12 @@ public class Code01_FindFirstIntersectNode {
 	}
 
 	public static Node getIntersectNode(Node head1, Node head2) {
+		//边界
 		if (head1 == null || head2 == null) {
 			return null;
 		}
+
+		//判断是否有环，并且找到环的起始点
 		Node loop1 = getLoopNode(head1);
 		Node loop2 = getLoopNode(head2);
 		if (loop1 == null && loop2 == null) {
@@ -26,7 +39,9 @@ public class Code01_FindFirstIntersectNode {
 		return null;
 	}
 
-	// 找到链表第一个入环节点，如果无环，返回null
+	/**
+	 * 	找到链表第一个入环节点，如果无环，返回null
+	 */
 	public static Node getLoopNode(Node head) {
 		if (head == null || head.next == null || head.next.next == null) {
 			return null;
@@ -50,6 +65,9 @@ public class Code01_FindFirstIntersectNode {
 		return slow;
 	}
 
+	/**
+	 * 无环相交，必是Y型
+	 */
 	// 如果两个链表都无环，返回第一个相交节点，如果不想交，返回null
 	public static Node noLoop(Node head1, Node head2) {
 		if (head1 == null || head2 == null) {
@@ -63,7 +81,7 @@ public class Code01_FindFirstIntersectNode {
 			cur1 = cur1.next;
 		}
 		while (cur2.next != null) {
-			n--;
+			n--; //找到两链表的长度差值，并根据正负号，判断哪个是长链表
 			cur2 = cur2.next;
 		}
 		if (cur1 != cur2) {
@@ -84,6 +102,9 @@ public class Code01_FindFirstIntersectNode {
 		return cur1;
 	}
 
+	/**
+	 * 有环相交，交点1是在环外，一是交点在环上
+	 */
 	// 两个有环链表，返回第一个相交节点，如果不想交返回null
 	public static Node bothLoop(Node head1, Node loop1, Node head2, Node loop2) {
 		Node cur1 = null;
@@ -112,7 +133,7 @@ public class Code01_FindFirstIntersectNode {
 				cur2 = cur2.next;
 			}
 			return cur1;
-		} else {
+		} else { //两根天线型
 			cur1 = loop1.next;
 			while (cur1 != loop1) {
 				if (cur1 == loop2) {
